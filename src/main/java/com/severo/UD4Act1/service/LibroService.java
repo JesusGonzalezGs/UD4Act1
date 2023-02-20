@@ -6,6 +6,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class LibroService {
@@ -39,8 +40,8 @@ public class LibroService {
         return libroRepository.findLibroByTitulo(titulo);
     }
 
-    public List<Libro> findLibroByAutor(String autor){
-        return libroRepository.findLibroByAutor(autor);
+    public List<Libro> findLibrosByAutor(String autor){
+        return libroRepository.findLibrosByAutor(autor);
     }
 
     public List<Libro> findLibroByEditorial(String editorial){
@@ -59,6 +60,18 @@ public class LibroService {
         return libro;
     }
 
+    public List<Libro> findLibrosByCategoriaNombre(String nombre){
+        return libroRepository.findLibrosByCategoriaNombre(nombre);
+    }
 
+    public List<Libro> postLibrosList(List<Libro> libros){
+        return libroRepository.saveAll(libros);
+    }
+
+
+    public Optional<Libro> find(Long id){
+        var libro = libroRepository.findById(id).orElse(null);
+        return Optional.ofNullable(libro);
+    }
 
 }

@@ -37,8 +37,9 @@ public class Libro {
     @Column(name = "num_paginas", nullable = false)
     private int numPaginas;
 
-    @Column(name = "categoria", nullable = false)
-    private String categoria;
+    @ManyToOne
+    @JoinColumn(name = "categoria_id", nullable = false)
+    private Categoria categoria;
 
     @Column(name = "precio", nullable = false)
     private double precio;

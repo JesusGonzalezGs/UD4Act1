@@ -37,6 +37,7 @@ public class UsuarioService {
         }else
             return null;
     }
+
     public List<Usuario> findUsuarioByNombre(String nombre){
         return usuarioRepository.findUsuarioByNombre(nombre);
     }
@@ -45,8 +46,8 @@ public class UsuarioService {
         return usuarioRepository.findUsuarioByBibliotecaId(id);
     }
 
-    public void addUsuario(Usuario usuario){
-        usuarioRepository.save(usuario);
+    public Usuario addUsuario(Usuario usuario){
+        return usuarioRepository.save(usuario);
     }
 
     public boolean delete(Long id){
@@ -62,8 +63,8 @@ public class UsuarioService {
         return Optional.ofNullable(usuario);
     }
 
-    public void updateUsuario(Usuario usuario){
-        usuarioRepository.save(usuario);
+    public Usuario updateUsuario(Usuario usuario){
+        return usuarioRepository.save(usuario);
     }
 
 

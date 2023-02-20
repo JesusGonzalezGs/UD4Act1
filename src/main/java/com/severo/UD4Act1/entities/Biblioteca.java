@@ -22,13 +22,13 @@ public class Biblioteca {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "nombre", nullable = false, unique = true)
+    @Column(name = "nombre", nullable = false )
     private String nombre;
 
-    @Column(name = "direccion", nullable = false, unique = true)
+    @Column(name = "direccion", nullable = false)
     private String direccion;
 
-    @Column(name = "telefono", nullable = false, unique = true)
+    @Column(name = "telefono", nullable = false)
     private String telefono;
 
     @JsonBackReference

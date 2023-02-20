@@ -6,6 +6,7 @@ import com.severo.UD4Act1.repository.BibliotecaRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -24,11 +25,21 @@ public class BibliotecaService {
         return false;
     }
 
+    public Optional<Biblioteca> findById(Long id){
+        var biblioteca = bibliotecaRepository.findById(id).orElse(null);
+        return Optional.ofNullable(biblioteca);
+
+    }
+
     public List<Biblioteca> findAll(){
         return bibliotecaRepository.findAll();
     }
 
-    public void saveBiblioteca(Biblioteca biblioteca){
+    public void addBiblioteca(Biblioteca biblioteca){
+        bibliotecaRepository.save(biblioteca);
+    }
+
+    public void updateBiblioteca(Biblioteca biblioteca){
         bibliotecaRepository.save(biblioteca);
     }
 
@@ -52,6 +63,16 @@ public class BibliotecaService {
 
     public List<Biblioteca> findAllBibliotecaByLibro(String titulo){
         return bibliotecaRepository.findAll().stream().filter(biblioteca -> biblioteca.getBibliotecaHasLibros().stream().anyMatch(bibliotecaHasLibro -> bibliotecaHasLibro.getLibro().getTitulo().equals(titulo))).collect(Collectors.toList());
+    }
+
+    public boolean deleteLibro(String nombre, String titulo){
+        Biblioteca biblioteca = bibliotecaRepository.findBibliotecaByNombre(nombre);
+        biblioteca.getBibliotecaHasLibros().removeIf(bibliotecaHasLibro -> bibliotecaHasLibro.getLibro().getTitulo().equals(titulo));
+        if (biblioteca.getBibliotecaHasLibros().stream().anyMatch(bibliotecaHasLibro -> bibliotecaHasLibro.getLibro().getTitulo().equals(titulo))){
+            return false;
+        }
+        bibliotecaRepository.save(biblioteca);
+        return true;
     }
 
 

@@ -8,10 +8,11 @@ import java.util.List;
 public interface LibroRepository extends JpaRepository<Libro, Long> {
 
     Libro findLibroByTitulo(String titulo);
-    List<Libro> findLibroByAutor(String autor);
+    List<Libro> findLibrosByAutor(String autor);
     List<Libro> findLibroByEditorial(String editorial);
     Libro findLibroByIsbn(String isbn);
 
+    List<Libro> findLibrosByCategoriaNombre(String nombre);
 
 
 }

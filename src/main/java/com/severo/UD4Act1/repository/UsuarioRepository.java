@@ -10,12 +10,10 @@ import java.util.List;
 
 public interface UsuarioRepository extends JpaRepository<Usuario, Long>{
 
-    List<Usuario> findUsuarioByNombre(String nombre, Pageable pageable);
     List<Usuario> findUsuarioByNombre(String nombre);
     Usuario findUsuarioByEmailAndPassword(String email, String password);
     List<Usuario> findUsuarioByBibliotecaId(Long id);
     List<Usuario> findUsuarioByBibliotecaId(Long id, Pageable pageable);
-
 
 
 
