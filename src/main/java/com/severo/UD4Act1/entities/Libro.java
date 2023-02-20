@@ -45,11 +45,11 @@ public class Libro {
     private double precio;
 
     @JsonBackReference
-    @OneToMany(mappedBy = "libro", cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "libro", cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
     private List<BibliotecaHasLibro> bibliotecaHasLibros = new ArrayList<>();
 
     @JsonIgnore
-    @OneToMany(mappedBy = "libro")
+    @OneToMany(mappedBy = "libro", cascade = CascadeType.REMOVE)
     private List<Reserva> reservas;
 
 

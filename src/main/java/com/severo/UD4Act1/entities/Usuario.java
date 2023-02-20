@@ -39,7 +39,7 @@ public class Usuario {
     private Biblioteca biblioteca;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "usuario")
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.REMOVE)
     private List<Reserva> reservas;
 
 

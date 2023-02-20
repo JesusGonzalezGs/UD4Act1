@@ -32,15 +32,15 @@ public class Biblioteca {
     private String telefono;
 
     @JsonBackReference
-    @OneToMany(mappedBy = "biblioteca", cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "biblioteca", cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
     private List<BibliotecaHasLibro> bibliotecaHasLibros = new ArrayList<>();
 
     @JsonIgnore
-    @OneToMany(mappedBy = "biblioteca")
+    @OneToMany(mappedBy = "biblioteca", cascade = CascadeType.REMOVE)
     private List<Usuario> usuarios;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "biblioteca")
+    @OneToMany(mappedBy = "biblioteca", cascade = CascadeType.REMOVE)
     private List<Reserva> reservas;
 
 }
